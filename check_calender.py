@@ -6,6 +6,7 @@ import pytz
 import asyncio
 import pickle
 import os
+import time
 
 import wled_controller
 
@@ -83,8 +84,10 @@ def set_device_state(request_on=False):
     """Turns the nano leafs on or off."""
 
     if request_on:
+        print("Setting red")
         wled_controller.set_red()
     else:
+        print("Setting green")
         wled_controller.set_green()
 
 def main():
@@ -109,7 +112,7 @@ def main():
         busy_times = get_busy_times_from_google_calendar()
     
     else:
-        # Read the busy times and smart plug IP from cache.
+        # Read the busy times
         cache = open(LOCAL_CACHE_FILEPATH, "rb")
         cached_data = pickle.load(cache)
         cache.close()
@@ -138,4 +141,7 @@ def main():
     cache.close()
 
 if __name__ == "__main__":
-    main()
+
+    while True:
+        main()
+        time.sleep(60)

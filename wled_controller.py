@@ -78,7 +78,3 @@ def set_green(turn_on=False):
     response = requests.post(url=url, headers=header, json=payload)
     if not response.ok:
         raise Exception("Nanolights not responding")
-
-
-
-set_red()
