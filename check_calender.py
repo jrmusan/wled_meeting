@@ -7,6 +7,9 @@ import asyncio
 import pickle
 import os
 
+
+# CREDIT TO ALL THE FANCY GOOGLE MEET STUFF GOES TO @pbitutsky (https://paul.bitutsky.com/)
+
 # Replace this with the URL template corresponding to your calendar's events
 GCALENDAR_URL_TEMPLATE = "https://clients6.google.com/calendar/v3/calendars/email@gmail.com/events?calendarId=email%40gmail.com&singleEvents=true&timeZone={timezone}&maxAttendees=1&maxResults=250&sanitizeHtml=true&timeMin={start_datetime}&timeMax={end_datetime}&key=AIzaSxBNlYH01_8Hc5S1J9vuBZJNAXxs"
 LOCAL_TIMEZONE = "America/New_York"  # Replace this with your time zone.
