@@ -62,4 +62,23 @@ def set_red(turn_on=False):
         raise Exception("Nanolights not responding")
 
 
+def set_green(turn_on=False):
+    """
+    Sets em green
+    """
+    
+    payload = {}
+
+    if not is_on():
+        payload["on"] = "t"
+
+    # Set em to red
+    payload["seg"] = {"i":[0,600,[0,128,0]]}
+            
+    response = requests.post(url=url, headers=header, json=payload)
+    if not response.ok:
+        raise Exception("Nanolights not responding")
+
+
+
 set_red()

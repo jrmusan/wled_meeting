@@ -7,6 +7,8 @@ import asyncio
 import pickle
 import os
 
+import wled_controller
+
 
 #~~~~~~~~~~~~~~CREDIT TO ALL THE FANCY GOOGLE MEET STUFF GOES TO @pbitutsky (https://paul.bitutsky.com/)~~~~~~~~~~~~~~
 
@@ -29,7 +31,7 @@ def get_busy_times_from_google_calendar():
 
     # Headers for the HTTP GET request.
     headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36",
+        "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Mobile Safari/537.36",
         "Pragma": "no-cache",
         "Cache-Control": "no-cache",
     }
@@ -78,16 +80,12 @@ def check_if_busy(busy_times, time_to_check):
     )
 
 def set_device_state(request_on=False):
-    """Turns the device (smart plug) on or off."""
-
-    # do nothing if the current device state is the same as the requested state
-    if device.is_on == request_on:
-        return 
+    """Turns the nano leafs on or off."""
 
     if request_on:
-        asyncio.run(device.turn_on())
+        wled_controller.set_red()
     else:
-        asyncio.run(device.turn_off()) 
+        wled_controller.set_green()
 
 def main():
     # Get the current time.
